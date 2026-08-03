@@ -1,0 +1,61 @@
+protocols = imap pop3
+listen = *
+
+# Аутентификация
+auth_mechanisms = plain login
+auth_username_format = %n
+
+# SSL
+ssl = required
+ssl_cert = </etc/ssl/certs/dovecot.pem
+ssl_key = </etc/ssl/private/dovecot.pem
+ssl_min_protocol = TLSv1.2
+
+# Почтовые ящики
+mail_location = maildir:~/Maildir
+mail_privileged_group = mail
+
+# IMAP настройки
+protocol imap {
+    mail_plugins = autocreate
+}
+
+# POP3 настройки
+protocol pop3 {
+    pop3_uidl_format = %08Xu%08Xv
+}
+
+# Настройки сервисов
+service auth {
+    unix_listener /var/spool/postfix/private/auth {
+        mode = 0660
+        user = postfix
+        group = postfix
+    }
+    user = $default_internal_user
+}
+
+service imap-login {
+    inet_listener imap {
+        port = 143
+    }
+    inet_listener imaps {
+        port = 993
+        ssl = yes
+    }
+}
+
+service pop3-login {
+    inet_listener pop3 {
+        port = 110
+    }
+    inet_listener pop3s {
+        port = 995
+        ssl = yes
+    }
+}
+
+# Логирование
+log_path = /var/log/dovecot/dovecot.log
+info_log_path = /var/log/dovecot/dovecot-info.log
+debug_log_path = /var/log/dovecot/dovecot-debug.log
