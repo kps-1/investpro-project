@@ -1,0 +1,31 @@
+# Общие настройки
+LogFile /var/log/clamav/clamav.log
+LogTime yes
+LogVerbose no
+
+# Настройка обновлений
+DatabaseDirectory /var/lib/clamav
+DatabaseOwner clamav
+DatabaseMirror db.ru.clamav.net
+PrivateMirror https://download.clamav.net
+
+# Настройки сканирования
+MaxFileSize 25M
+MaxScanSize 100M
+MaxRecursion 10
+MaxFiles 10000
+
+# Детектирование
+DetectPUA yes
+PhishingSignatures yes
+PhishingScanURLs yes
+HeuristicAlerts yes
+HeuristicScanPrecedence yes
+
+# Безопасность
+BlockEncrypted yes
+BlockMax yes
+AlertExceedsMax yes
+
+# Официальные сигнатуры
+OfficialDatabaseOnly no
