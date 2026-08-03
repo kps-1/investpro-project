@@ -151,12 +151,9 @@
 
 ---
 
-## Ссылки
+## Схема сети: <img width="1811" height="1999" alt="image1_1763109827" src="https://github.com/user-attachments/assets/d3694bb6-69e1-4380-aaca-48f12516ba44" />
 
-- Схема сети: <img width="1811" height="1999" alt="image1_1763109827" src="https://github.com/user-attachments/assets/d3694bb6-69e1-4380-aaca-48f12516ba44" />
-
-- Исходные коды конфигураций: (вставьте ссылку на папку configs)
-- Скриншоты: (вставьте ссылку на папку screenshots)
+- Исходные коды конфигураций отдельными файлами в репозитори
 
 ---
 
