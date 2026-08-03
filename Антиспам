@@ -1,0 +1,48 @@
+# Включение веб-интерфейса
+bind_socket = "*:11334";
+
+# Пароль для доступа к веб-интерфейсу
+secure_ip = "127.0.0.1";
+password = "secure_rspamd_password_here";
+
+# Настройки логов
+log_file = "/var/log/rspamd/rspamd.log";
+log_level = 2;
+
+# Настройки антиспама
+classify {
+    spam = "10";
+    ham = "-10";
+}
+
+# Правила для спама
+rules {
+    "SPAM" {
+        weight = 5;
+        description = "Общий спам";
+    }
+    "HAM" {
+        weight = -5;
+        description = "Доверенное письмо";
+    }
+}
+
+# Грейлистинг
+greylist {
+    enabled = true;
+    expire = 3600; # 1 час
+}
+
+# Интеграция с Postfix
+milter {
+    bind_socket = "localhost:11332";
+    mode = "headers";
+    # Установка заголовков
+    use_headers = true;
+    # Добавление заголовков к письму
+    header {
+        "X-Spam-Level" = "default";
+        "X-Spam-Status" = "default";
+        "X-Spam-Score" = "default";
+    }
+}
